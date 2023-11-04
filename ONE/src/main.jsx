@@ -1,14 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Header from "./header";
-// import NewsList from "./news_list";
+import React from 'react';
+import ReactDOM  from 'react-dom/client';
+import Header from './components/header/index';
+// import NewsList from './components/news_list';
+import './styles/styles.css';
 
-const App = () => (
-    <div>
-        <Header/>
-        {/* <NewsList/> */}
-    </div>
-)
+const App = () => {
+    return (
+        <>
+            <Header/>
+            {/* <NewsList/> */}
+        </>
+    )
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App/>)
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
