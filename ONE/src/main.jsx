@@ -7,10 +7,19 @@ import {newsData} from './utils/data'
 import './styles/styles.css';
 
 const App = () => {
-    let [news,setNews] = useState(newsData)
+    let [news,setNews] = useState(newsData);
+
+    const getKeywords = (event) => {
+        let keywords = event.target.value;
+        let filtered = newsData.filter( item => {
+            return item.title.indexOf(keywords) > -1
+        })
+        setNews(filtered)
+    }
+
     return (
         <>
-            <Header/>
+            <Header getKeywords={getKeywords}/>
             <div className='container'>
                 {/* <StatePlayground/> */}
                 <NewsList news={news}> 
