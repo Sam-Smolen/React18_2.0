@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import Title from "./components/title";
+import Count from "./components/count";
+import CountBtn from './components/countBtn';
+import Age from "./components/age";
+import AgeBtn from "./components/ageBtn";
 
 const App = () => {
-  let [count,setCount] = useState(0);
+    let [count,setCount] = useState(0);
+    let [age,setAge] = useState(10);
 
-  const addOne = () => {setCount(count + 1)}
-  const subOne = () => {setCount(count - 1)}
-  const toZero = () => {setCount(0)}
 
-  return(
-    <>
-    <h1>The Count is: {count}</h1>
-    <button onClick={addOne}>+1</button>
-    <button onClick={subOne}>-1</button>
-    <button onClick={toZero}>reset</button>
-    </>
-  )
+    const handleCount = useCallback(() => {
+        setCount(count+1)
+    },[count])
+    
+    const handleAge = useCallback(() => {
+        setAge(age+1)
+    },[age])
+    
+
+    return(
+        <>
+            <Title/>
+            <Count count={count}/>
+            <CountBtn handleCount={handleCount}/>
+            <Age age={age}/>
+            <AgeBtn handleAge={handleAge}/>
+        </>
+    )
+
 }
 
 export default App;
