@@ -11,7 +11,7 @@ const MyProvider = (props) => {
         <Mycontext.Provider value={{
             stage:stage,
             players:players,
-            result,result
+            result:result
         }}>
             {props.children}
         </Mycontext.Provider>
