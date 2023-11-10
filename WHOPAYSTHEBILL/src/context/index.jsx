@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 
-const Mycontext = createContext();
+const MyContext = createContext();
 
 const MyProvider = (props) => {
     const [stage,setStage] = useState(1);
@@ -8,14 +8,14 @@ const MyProvider = (props) => {
     const [result,setResult] = useState('');
 
     return(
-        <Mycontext.Provider value={{
+        <MyContext.Provider value={{
             stage:stage,
             players:players,
             result:result
         }}>
             {props.children}
-        </Mycontext.Provider>
+        </MyContext.Provider>
     )
 }
 
-export {Mycontext, MyProvider}
+export {MyContext, MyProvider}
