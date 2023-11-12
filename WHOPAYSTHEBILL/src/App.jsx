@@ -5,6 +5,7 @@ import Stage2 from './components/stage_2.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style/app.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
