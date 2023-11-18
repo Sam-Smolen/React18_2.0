@@ -1,16 +1,45 @@
+import { Formik } from 'formik'
 
 const FormOne = () => {
 
     return (
+      <Formik
+        initialValues={{
+          firstname:'Steve',
+          lastname:'',
+          email:'',
+          country:'',
+          state:'',
+          zip:''
+        }}
+        onSubmit={(values)=>{
+          console.log(values)
+        }}
+      >
+      { ({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+      })=>(
       <div className="container">
         <div className="col-md-12 mt-5">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h4 className="mb-3">Personal information</h4>
   
           <div className="row">
             <div className="col-md-6 mb-3">
               <label htmlFor="firstname">First name</label>
-              <input type="text" className="form-control" id="firstname" name="firstname"/>
+              <input 
+                type="text" 
+                className="form-control" 
+                id="firstname"
+                onChange={handleChange}
+                value={values.firstname}
+              />
             </div>
             <div className="col-md-6 mb-3">
               <label htmlFor="lastname">Last name</label>
@@ -58,6 +87,8 @@ const FormOne = () => {
         </form>
         </div>
       </div>
+      ) }
+    </Formik>
     );
 
 }
