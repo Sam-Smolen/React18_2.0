@@ -1,11 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addMovie } from './store/movies'
 import { setType, fetchUser } from './store/users';
+import { useEffect } from 'react';
 
 const App = () =>{
   const movies = useSelector((state)=> state.movies.list);
   const users = useSelector((state)=> state.users)
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchUser())
+    .unwrap()
+    .then(response=>{
+      console.log(response)
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  },[])
 
   return(
     <>
