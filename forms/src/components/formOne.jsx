@@ -1,4 +1,5 @@
-import { Formik } from 'formik'
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 const FormOne = () => {
 
@@ -12,24 +13,12 @@ const FormOne = () => {
           state:'',
           zip:''
         }}
-        validate={ values =>{
-          const errors = {};
-
-          if(!values.firstname){
-            errors.firstname = 'Sorry, this is required'
-          }
-          if(!values.lastname){
-            errors.lastname = 'Sorry, this is required'
-          }
-
-          if(!values.email){
-            errors.email = 'Sorry, this is required'
-          } else if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(values.email)){
-            errors.email = 'Invalid email'
-          }
-
-          return errors;
-        }}
+        validationSchema={Yup.object({
+          firstname: Yup
+          .string()
+          .required('This field is required')
+          .max(5, '5 char max')
+        })}
         onSubmit={(values)=>{
           console.log(values)
         }}
