@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts } from "../thunks/thunks";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchPosts } from '../thunks/thunks';
+
 
 export const postsSlice = createSlice({
     name:'posts',
     initialState:{
         loading:true,
-        articles: {
+        articles:{
             items:[]
         }
     },
@@ -13,16 +14,17 @@ export const postsSlice = createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(fetchPosts.pending,(state)=>{
-            state.loading = true
+            state.loading = true;
         })
         .addCase(fetchPosts.fulfilled,(state,action)=>{
-            state.loading = false
-            state.articles = action.payload
+            state.loading = false;
+            state.articles = action.payload;
         })
         .addCase(fetchPosts.rejected,(state)=>{
-            state.loading = false
+            state.loading = false;
         })
     }
-})
+});
 
-export default postsSlice.reducer
+
+export default postsSlice.reducer;
