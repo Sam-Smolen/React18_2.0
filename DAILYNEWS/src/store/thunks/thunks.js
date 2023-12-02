@@ -35,3 +35,19 @@ export const fetchPostById =  createAsyncThunk(
         }
     }
 )
+
+export const sendMessage = createAsyncThunk(
+    'users/sendMessage',
+    async(data)=>{
+        try{
+            const req = await axios({
+                method:'POST',
+                url:`${URL_SERV}/contactj`,
+                data
+            });
+            return req.data;
+        }catch(error){
+            throw error
+        }
+    }
+)

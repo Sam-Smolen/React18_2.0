@@ -201,10 +201,28 @@
       "createdAt": "2020-07-22T12:59-0500"
     }
   ],
-  "newsletter": [
-   
-  ],
+  "newsletter": [],
   "contact": [
-   
+    {
+      "email": "sam.smolen@icloud.com",
+      "firstname": "Samuel",
+      "lastname": "Smolen",
+      "message": "asd",
+      "id": 1
+    },
+    {
+      "email": "sam.smolen@icloud.com",
+      "firstname": "Samuel",
+      "lastname": "Smolen",
+      "message": "123",
+      "id": 2
+    },
+    {
+      "email": "sam.smolen@icloud.com",
+      "firstname": "Samuel",
+      "lastname": "Smolen",
+      "message": "cccccc",
+      "id": 3
+    }
   ]
 }
