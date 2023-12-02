@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchPostById } from "../../store/thunks/thunks";
+import { clearPostById } from "../../store/reducers/posts";
 import Moment from "react-moment";
 
 
@@ -12,6 +13,12 @@ const PostComponent = () => {
 
     useEffect(()=>{
         dispatch(fetchPostById(params.id))
+    },[])
+
+    useEffect(()=> {
+        return()=> { // runs only once when the component unmounts
+            dispatch(clearPostById())
+        }
     },[])
 
 
