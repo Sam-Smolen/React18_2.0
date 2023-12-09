@@ -42,7 +42,7 @@ export const sendMessage = createAsyncThunk(
         try{
             const req = await axios({
                 method:'POST',
-                url:`${URL_SERV}/contactj`,
+                url:`${URL_SERV}/contactsa`,
                 data
             });
             return req.data;
