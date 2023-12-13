@@ -12,10 +12,26 @@ app.get('/',(req,res)=>{
     `)
 });
 
-app.get('/api/user',(req,res)=>{
+app.get('/api/:user/:id',(req,res)=>{
+    let id = req.params.id;
+    let username = req.params.user;
+    res.send(`
+        <html>
+            <body>
+                <h1>The username is ${username} and the ID is ${id}</h1>
+            </body>
+        </html>
+    `)
+});
+
+// /api/car?brand=lexus&year=2001
+
+app.get('/api/car',(req,res)=> {
+    let brand = req.query.brand
+    let year = req.query.year
     res.send({
-        name:"Francis",
-        lastname:"Jones"
+        brand,
+        year
     })
 })
 
