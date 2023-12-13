@@ -1,12 +1,24 @@
-// express server 
+// express server
 const express = require('express');
 const app = express();
 
-const PORT = 3333;
+app.get('/',(req,res)=>{
+    res.send(`
+        <html>
+            <body>
+                <h1>Hello !!</h1>
+            </body>
+        </html>
+    `)
+});
 
-app.get('/',(req, res)=> {
-    res.send('This is the homepage');
+app.get('/api/user',(req,res)=>{
+    res.send({
+        name:"Francis",
+        lastname:"Jones"
+    })
 })
 
-app.listen(PORT);
-console.log(`Server listening on localhost:${PORT}!`);
+
+const port = process.env.PORT || 3000;
+app.listen(port);
