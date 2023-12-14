@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 
-app.use('/css',express.static( __dirname+ '/public/css'));
+app.use('/css',express.static( __dirname + '/public/css'));
 
 
 app.get('/',(req,res)=>{
