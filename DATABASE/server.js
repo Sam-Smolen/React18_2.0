@@ -16,15 +16,38 @@ const client = new MongoClient(mongoURI, {
     }
   });
 
-async function run () {
-    try {
-        await client.connect()
-        console.log('connected to Mongo')
-    }finally {
-        await client.close()
-    }
-}
-run().catch(console.dir);
+// async function run(){
+//     try{
+//         await client.connect();
+//         console.log('connected')
+//     } finally {
+//         await client.close();
+//     }
+// }
+// run().catch(console.dir);
+
+
+
+app.get('/api/users',async(req,res)=>{
+  try{
+      await client.connect();
+      const database = client.db('myApp');
+      const collection = database.collection('users');
+      const query = await collection.insertOne({
+          name:'Francis',
+          lastname:'Jones'
+      });
+      console.log(query);
+
+      res.status(200).json({awesome:'Yes'});
+  } catch(error){
+      throw error;
+  } finally{
+      await client.close();
+      console.log('all is done')
+  }
+});
+
 
 const port = process.env.PORT || 3001;
 app.listen(port);

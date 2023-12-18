@@ -1,7 +1,27 @@
+import axios from 'axios';
+
 const App = () => {
+
+  const addUser = () => {
+    axios.get('/api/users')
+    .then( response => {
+      console.log(response.data)
+    })
+    .catch(()=>{
+      console.log('error')
+    });
+  }
+
+
   return(
     <>
-      <h1>Application</h1>
+      <div className='App'>
+        <button
+          onClick={()=> addUser()}
+        >
+          Add user
+        </button>
+      </div>      
     </>
   )
 }
