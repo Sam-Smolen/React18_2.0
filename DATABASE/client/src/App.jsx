@@ -2,24 +2,28 @@ import axios from 'axios';
 
 const App = () => {
 
-  const addUser = () => {
-    axios.get('/api/users')
-    .then( response => {
-      console.log(response.data)
+
+  const onCarSubmit = () => {
+    axios.post('/api/addcar',{
+      brand:'Leux',
+      model:'is300',
+      year:2001,
+      avail:true
     })
-    .catch(()=>{
-      console.log('error')
-    });
+    .then( response => {
+      console.log(response.data);
+    })
   }
 
 
   return(
     <>
       <div className='App'>
+        <h1>Add car</h1>
         <button
-          onClick={()=> addUser()}
+          onClick={()=> onCarSubmit()}
         >
-          Add user
+            Add car to DB
         </button>
       </div>      
     </>
