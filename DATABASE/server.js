@@ -59,6 +59,23 @@ app.post('/api/removecar',async(req, res)=> {
   }
 })
 
+app.post('/api/updatecar',async(req,res)=>{
+  try {
+      const id = req.body.id;
+      const brand = req.body.brand;
+
+      let doc = await Car.findByIdAndUpdate(
+          id,
+          {$set:{ brand: brand }},
+          {new: true}
+      );
+      console.log(doc)
+      res.json(doc);
+  }catch( error ){
+      console.log(error)
+  }
+})
+
 
 const port = process.env.PORT || 3001;
 app.listen(port);

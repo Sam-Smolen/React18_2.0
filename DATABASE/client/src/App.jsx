@@ -38,6 +38,16 @@ const onCarRemove = () => {
     })
   }
 
+  const onCarUpdate = () => {
+    axios.post('/api/updatecar',{
+      id:'6580dcfa5c14505a79de7a88',
+      brand:'Lexuss'
+    })
+    .then( response =>{
+      getCars();
+    })
+  }
+
 
   return(
     <>
@@ -56,6 +66,9 @@ const onCarRemove = () => {
         <hr />
         <h1>Delete A Car</h1>
         <button onClick={()=> onCarRemove()}>Delete</button>
+        <hr/>
+        <h2>Update elements</h2>
+        <button onClick={()=> onCarUpdate()}>Update !!!</button>
       </div>      
     </>
   )
