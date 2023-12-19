@@ -36,6 +36,19 @@ app.post('/api/addcar',async(req,res)=>{
   }
 })
 
+app.get('/api/getcars',async(req, res)=> {
+  try {
+    // let doc = await Car.find({})
+    // let doc = await Car.find({brand:'Ford'})
+    // let doc = await Car.find({_id:'6580dcfa5c14505a79de7a88'})
+    // let doc = await Car.findOne({_id:'6580dd3c5c14505a79de7a8a'})
+    let doc = await Car.findById('6580dd935c14505a79de7a8c')
+    res.json([doc])
+  }catch(err){
+    console.log(err)
+  }
+})
+
 
 const port = process.env.PORT || 3001;
 app.listen(port);
