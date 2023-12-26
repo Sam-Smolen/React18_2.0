@@ -8,16 +8,14 @@ mongoose.connect(mongoURI)
 console.log('mongoose connected!');
 
 // MIDDLWARES
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
 
 // IMPORT MODELS
-const {User} = require('./models/user.js')
+const {User} = require('./models/user.js');
 
 // SERVER ROUTING
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=> {
     console.log(`Server listening on port ${port}!`);
-})
+});
