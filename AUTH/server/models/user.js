@@ -14,5 +14,21 @@ const userSchema = mongoose.Schema({
     }
 });
 
+userSchema.pre('save',function(next){
+    var user = this;
+
+    if(user.isModified('password')){
+        bcrypt.genSalt(SALT_I,(err,salt)=>{
+            bcrypt.hash(user.password,salt,(err,hash)=>{
+                if(err) return next(err);
+                user.password = hash;
+                next();
+            })
+        })
+    } else{
+        next()
+    }
+})
+
 const User = mongoose.model('User',userSchema);
 module.exports = { User };
