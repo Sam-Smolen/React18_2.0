@@ -16,7 +16,7 @@ const userSchema = mongoose.Schema({
     }
 });
 
-
+// BEFORE USER IS SAVED IN DB HASH THE PASSWORD
 userSchema.pre('save',function(next){
     var user = this;
 
@@ -33,7 +33,7 @@ userSchema.pre('save',function(next){
     }
 })
 
-
+// CREATE COMPARE PASSWORD METHOD TO VALIDATE THE PROVIDED PASSWORD WITH THE HASHED PASSWORD
 userSchema.methods.comparePassword = function(candidatePassword,cb){
     // candidatePassword = req.body.password
     bcrypt.compare(candidatePassword,this.password,function(err,isMatch){
