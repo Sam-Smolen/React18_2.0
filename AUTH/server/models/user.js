@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_I = 10;
 
 const userSchema = mongoose.Schema({
     email:{
@@ -13,6 +15,7 @@ const userSchema = mongoose.Schema({
         minlength:6
     }
 });
+
 
 userSchema.pre('save',function(next){
     var user = this;
@@ -30,6 +33,7 @@ userSchema.pre('save',function(next){
     }
 })
 
+
 userSchema.methods.comparePassword = function(candidatePassword,cb){
     // candidatePassword = req.body.password
     bcrypt.compare(candidatePassword,this.password,function(err,isMatch){
@@ -38,5 +42,7 @@ userSchema.methods.comparePassword = function(candidatePassword,cb){
     })
 }
 
+
+
 const User = mongoose.model('User',userSchema);
-module.exports = { User };
+module.exports = { User }
