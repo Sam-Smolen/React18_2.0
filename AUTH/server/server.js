@@ -18,20 +18,7 @@ const {User} = require('./models/user.js');
 // SERVER ROUTING
 
 // ADD AND SAVE NEW USER TO DB
-app.post('/api/user',async(req,res)=> {
-    try {
-       const user = new User({
-         email: req.body.email,
-         password: req.body.password
-       })
-       let doc = await user.save()
-       res.status(200).send(doc)
-    }catch(err){
-        res.status(400).send(err)
-    }
-})
 
-// VERIFY USER EXISTS IN DB AND LOG IN 
 app.post('/api/user/login',async(req,res)=>{
     try{
         // 1 -find the user,if good, -> move forward
@@ -45,17 +32,17 @@ app.post('/api/user/login',async(req,res)=>{
                     message:'Bad password'
                 })
 
-
                 // 3 - send response
-                res.status(200).send(isMatch);
+                user.generateToken((err,user)=>{
+                    if(err) throw err;
+                    res.cookie('auth',user.token).send('ok')
+                })
             })
     } catch(error){
         res.json({message:error})
     }
-    
-  
-
 })
+
 
 
 const port = process.env.PORT || 3000;

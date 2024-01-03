@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt =  require('jsonwebtoken');
 const SALT_I = 10;
 
 const userSchema = mongoose.Schema({
@@ -13,8 +14,12 @@ const userSchema = mongoose.Schema({
         type:String,
         required:true,
         minlength:6
+    },
+    token:{
+        type:String
     }
 });
+
 
 // BEFORE USER IS SAVED IN DB HASH THE PASSWORD
 userSchema.pre('save',function(next){
@@ -40,6 +45,19 @@ userSchema.methods.comparePassword = function(candidatePassword,cb){
         if(err) cb(err);
         cb(null,isMatch)
     })
+}
+
+userSchema.methods.generateToken = async function(cb){
+    var user = this;
+    var token =  jwt.sign(user._id.toHexString(),'supersecretpassword');
+    user.token =  token
+
+    try{
+        await user.save();
+        cb(null,user)
+    } catch(error){
+        if(err) return cb(err);
+    }
 }
 
 
