@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 // CONNECT TO MONGO WITH MONGOOSE
 const mongoose = require('mongoose');
@@ -11,7 +12,7 @@ console.log('mongoose connected!');
 
 // MIDDLWARES
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 // IMPORT MODELS
 const {User} = require('./models/user.js');
 
@@ -41,6 +42,18 @@ app.post('/api/user/login',async(req,res)=>{
     } catch(error){
         res.json({message:error})
     }
+})
+
+app.get('/api/books',async(req,res)=>{
+    let token = req.cookies.auth;
+
+    User.findByToken(token,(err,user)=>{
+        if(err) throw err;
+        if(!user) return  res.status(400).json({
+            message:'Bad token'
+        });
+        res.status(200).send(user)
+    });
 })
 
 
